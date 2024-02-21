@@ -40,6 +40,7 @@
    :color            intials avatar text color
    :size             intials avatar radius
    :ring?            render ident ring around avatar? NOTE: this option may not work if override-ring? is not nil}
+   :ring-width       the ring width
 
   supported color formats:
   #RRGGBB
