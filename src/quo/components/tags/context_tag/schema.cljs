@@ -1,5 +1,6 @@
 (ns quo.components.tags.context-tag.schema
-  (:require [malli.core :as malli]))
+  (:require [malli.core :as malli]
+            [quo.components.avatars.user-avatar.schema :refer [?profile-picture]]))
 
 (def ^:private ?context-base
   [:map
@@ -18,7 +19,7 @@
 
 (def ^:private ?default
   [:map
-   [:profile-picture {:optional true} [:maybe :schema.common/image-source]]
+   [:profile-picture {:optional true} [:maybe ?profile-picture]]
    [:full-name {:optional true} [:maybe :string]]])
 
 (def ^:private ?multiuser
@@ -26,7 +27,8 @@
    [:users {:optional true}
     [:maybe
      [:sequential
-      [:map [:profile-picture {:optional true} [:maybe :schema.common/image-source]]
+      [:map
+       [:profile-picture {:optional true} [:maybe ?profile-picture]]
        [:full-name {:optional true} [:maybe :string]]
        [:customization-color {:optional true} [:maybe :schema.common/customization-color]]]]]]])
 
